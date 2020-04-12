@@ -35,8 +35,8 @@ function calcTabel(read, veerud){
     EY += paar[0]*paar[1];
     EY2 += Math.pow(paar[0],2) * paar[1];
   }
-  var DX = Math.round(EX2 - Math.pow(EX,2)*10**6)/10**6;
-  var DY = Math.round(EY2 - Math.pow(EY,2)*10**6)/10**6;
+  var DX = Math.round((EX2 - Math.pow(EX,2))*10**6)/10**6;
+  var DY = Math.round((EY2 - Math.pow(EY,2))*10**6)/10**6;
   var COV = EXY - EX*EY;
   var sigmaX = Math.pow(DX,0.5);
   var sigmaY = Math.pow(DY,0.5);
