@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Cell from "./Cell";
 
-export class Row extends Component{
-    constructor(props){
-        super(props);
-    }
-
-    handleCellChange(){
-
-    }
+export class TRow extends Component{
 
     render(){
         return(
@@ -27,4 +19,4 @@ export class Row extends Component{
     }
 }
 
-export default Row;
+export default TRow;

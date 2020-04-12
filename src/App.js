@@ -1,15 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Table, { TableWrapper } from './components/TableWrapper'
+import { TableWrapper } from './components/TableWrapper';
+import {Container, Row, Col} from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
-      <TableWrapper>
+      <Container>
+        <Row className="justify-content-start">      
+          <TableWrapper></TableWrapper>
+        </Row>
+      </Container>
 
-      </TableWrapper>
     </div>
   );
 }
