@@ -41,21 +41,21 @@ function calcTabel(read, veerud){
   var sigmaX = Math.pow(DX,0.5);
   var sigmaY = Math.pow(DY,0.5);
 
-  var soltumatud = true;
+  var soltumatud = "jah";
   for (let i=0; i<read.length; i++){
     for (let j=1; j<read.length; j++){
       if (read[i][j] !== Math.round(Xtabel[i][1] * Ytabel[j-1][1] * 100000)/100000){
-        soltumatud = false;
+        soltumatud = "ei";
         console.log(`${read[i][j]} ei võrdu ${Xtabel[i][1] * Ytabel[j-1][1]}, rida ${i}, veerg ${j}`);
         break;
       }
     }
-    if (!soltumatud){
+    if (soltumatud === "ei"){
       break;
     }
   }
 
-  return {EX:EX, EX2:EX2, EY:EY, EY2:EY2, DX:DX, DY:DY, EXY:EXY, COV: COV, sigmaX:sigmaX, sigmaY:sigmaY, soltumatud:soltumatud, korrelatsioonikordaja:COV/(sigmaX*sigmaY)}
+  return {EX:EX, EX2:EX2, EY:EY, EY2:EY2, DX:DX, DY:DY, EXY:EXY, COV: COV, sigmaX:sigmaX, sigmaY:sigmaY, sõltumatud:soltumatud, korrelatsioonikordaja:COV/(sigmaX*sigmaY)}
 }
 export default calcTabel;
 /*
@@ -69,16 +69,3 @@ console.log(calcTabel([
         [2, 12/100, 16/100, 12/100]
         ]))
         */
-/*
-for (element in calcTabel([
-        [1, 3/100, 15/100, 12/100],
-        [2, 4/100, 20/100, 16/100],
-        [3, 3/100, 15/100, 12/100]
-        ],[
-        [0, 3/100, 4/100, 3/100],
-        [1, 15/100, 20/100, 15/100],
-        [2, 12/100, 16/100, 12/100]
-        ])){
-          console.log(element)
-        }
-*/
