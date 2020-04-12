@@ -3,9 +3,9 @@ function calcTabel(read, veerud){
   var Ytabel = [];
   var EXY = 0;
 
-  for (i = 0; i < read.length; i++){
-    var tnt = 0;
-    for (j = 1; j < read[0].length; j++){
+  for (let i = 0; i < read.length; i++){
+    let tnt = 0;
+    for (let j = 1; j < read[0].length; j++){
       tnt += read[i][j];
       EXY += read[i][j] * read[i][0] * veerud[j-1][0];
     }
@@ -13,9 +13,9 @@ function calcTabel(read, veerud){
     //console.log(Xtabel);
   }
 
-  for (i = 0; i < veerud.length; i++){
+  for (let i = 0; i < veerud.length; i++){
     var tnt = 0;
-    for (j = 1; j < veerud[0].length; j++){
+    for (let j = 1; j < veerud[0].length; j++){
       tnt += veerud[i][j];
     }
     Ytabel.push([veerud[i][0],tnt]);
@@ -24,14 +24,14 @@ function calcTabel(read, veerud){
 
   var EX = 0;
   var EX2 = 0;
-  for (paar of Xtabel){
+  for (let paar of Xtabel){
     //console.log(paar);
     EX += paar[0]*paar[1];
     EX2 += paar[0]**2 * paar[1];
   }
   var EY = 0;
   var EY2 = 0;
-  for (paar of Ytabel){
+  for (let paar of Ytabel){
     EY += paar[0]*paar[1];
     EY2 += Math.pow(paar[0],2) * paar[1];
   }
@@ -42,9 +42,9 @@ function calcTabel(read, veerud){
   var sigmaY = Math.pow(DY,0.5);
 
   var soltumatud = true;
-  for (i=0; i<read.length; i++){
-    for (j=1; j<read.length; j++){
-      if (read[i][j] != Math.round(Xtabel[i][1] * Ytabel[j-1][1] * 100000)/100000){
+  for (let i=0; i<read.length; i++){
+    for (let j=1; j<read.length; j++){
+      if (read[i][j] !== Math.round(Xtabel[i][1] * Ytabel[j-1][1] * 100000)/100000){
         soltumatud = false;
         console.log(`${read[i][j]} ei võrdu ${Xtabel[i][1] * Ytabel[j-1][1]}, rida ${i}, veerg ${j}`);
         break;

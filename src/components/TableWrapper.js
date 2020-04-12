@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import  {Table, Button, ButtonGroup, Row} from 'react-bootstrap';
+import  {Table, Button, ButtonGroup} from 'react-bootstrap';
 import TRow from './TRow';
 import RowHead from './RowHead';
 import calcTabel from './TNTcalculator'
+import Result from './Result';
 
 export class TableWrapper extends Component{
     constructor(){
         super();
         this.state = {
             size : 2,
-            rows : this.createCells(2)
+            rows : this.createCells(2),
+            result: {}
             
         }
     }
@@ -33,18 +35,21 @@ export class TableWrapper extends Component{
         var tabel = this.state.rows;
         var read = [];
         var veerud = [];
-        for (x of tabel[0]){
+        for (let x of tabel[0]){
             veerud.push([parseFloat(x)]);
         }
-        for (i=1; i< tabel.length; i++){
+        for (let i=1; i< tabel.length; i++){
             read.push(tabel[i].map(x => parseFloat(x)));
         }
-        for (i=0; i<veerud.length; i++){
-            for (j=0; j<read.length; j++){
+        for (let i=0; i<veerud.length; i++){
+            for (let j=0; j<read.length; j++){
                 veerud[i].push(read[j][i+1]);
             }
         }
-        console.log(calcTabel(read,veerud));
+        let result = calcTabel(read,veerud);
+        console.log(result)
+        this.setState({...this.state, result: result})
+
     }
 
     decreaseSize = () => {
@@ -76,13 +81,14 @@ export class TableWrapper extends Component{
             <Table bordered style={{width: "auto"}}>
                 <RowHead key={0} handleChange={this.handleRowChange} row={this.state.rows[0]}></RowHead>
                 {this.state.rows.map((row, index) => {
-                    if(index !== 0)
-                    return(<TRow key={index} handleChange={this.handleRowChange} row={row}>
-                        </TRow>)
-
+                    if(index !== 0){
+                        return(<TRow key={index} handleChange={this.handleRowChange} row={row}>
+                            </TRow>)
+                    }
                 })
                 }
             </Table>
+            <Result key={0} result={this.state.result}></Result>
             </div>
         )
     }
