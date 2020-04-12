@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/tnt-calculator/static/css/main.5f361e03.chunk.css",
+    "main.js": "/tnt-calculator/static/js/main.f276324b.chunk.js",
+    "main.js.map": "/tnt-calculator/static/js/main.f276324b.chunk.js.map",
+    "runtime-main.js": "/tnt-calculator/static/js/runtime-main.09d09539.js",
+    "runtime-main.js.map": "/tnt-calculator/static/js/runtime-main.09d09539.js.map",
+    "static/js/2.5f012942.chunk.js": "/tnt-calculator/static/js/2.5f012942.chunk.js",
+    "static/js/2.5f012942.chunk.js.map": "/tnt-calculator/static/js/2.5f012942.chunk.js.map",
+    "index.html": "/tnt-calculator/index.html",
+    "precache-manifest.c60da6be8f21cd4e3dbe060d60c2b1fe.js": "/tnt-calculator/precache-manifest.c60da6be8f21cd4e3dbe060d60c2b1fe.js",
+    "service-worker.js": "/tnt-calculator/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/tnt-calculator/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.5f012942.chunk.js.LICENSE.txt": "/tnt-calculator/static/js/2.5f012942.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/tnt-calculator/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09d09539.js",
+    "static/js/2.5f012942.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.f276324b.chunk.js"
+  ]
+}
