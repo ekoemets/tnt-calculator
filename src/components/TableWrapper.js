@@ -39,7 +39,14 @@ export class TableWrapper extends Component{
             veerud.push([parseFloat(x)]);
         }
         for (let i=1; i< tabel.length; i++){
-            read.push(tabel[i].map(x => parseFloat(x)));
+            read.push(tabel[i].map(x => {
+                if (x.includes("/")){
+                   let osad = x.split("/");
+                   return parseFloat(osad[0]) / parseFloat(osad[1]);
+                }
+                else {
+                    return parseFloat(x);
+                }}));
         }
         for (let i=0; i<veerud.length; i++){
             for (let j=0; j<read.length; j++){
