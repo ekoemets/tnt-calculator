@@ -9,7 +9,7 @@ export class Cell extends Component{
     render(){
         return(
             <th>
-            <input className="" type="number" onChange={this.handleChange}/>
+            <input className="" onChange={this.handleChange}/>
             </th>
         )
     }
