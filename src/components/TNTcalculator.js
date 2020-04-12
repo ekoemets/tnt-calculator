@@ -57,7 +57,8 @@ function calcTabel(read, veerud){
 
   return {EX:EX, EX2:EX2, EY:EY, EY2:EY2, DX:DX, DY:DY, EXY:EXY, COV: COV, sigmaX:sigmaX, sigmaY:sigmaY, soltumatud:soltumatud, korrelatsioonikordaja:COV/(sigmaX*sigmaY)}
 }
-
+export default calcTabel;
+/*
 console.log(calcTabel([
         [1, 3/100, 15/100, 12/100],
         [2, 4/100, 20/100, 16/100],
@@ -67,6 +68,7 @@ console.log(calcTabel([
         [1, 15/100, 20/100, 15/100],
         [2, 12/100, 16/100, 12/100]
         ]))
+        */
 /*
 for (element in calcTabel([
         [1, 3/100, 15/100, 12/100],

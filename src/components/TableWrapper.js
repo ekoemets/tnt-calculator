@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  {Table, Button, ButtonGroup, Row} from 'react-bootstrap';
 import TRow from './TRow';
 import RowHead from './RowHead';
+import calcTabel from './TNTcalculator'
 
 export class TableWrapper extends Component{
     constructor(){
@@ -29,8 +30,21 @@ export class TableWrapper extends Component{
     }
 
     onCalculate = (event) =>  {
-        console.log(this.state.rows)
-        
+        var tabel = this.state.rows;
+        var read = [];
+        var veerud = [];
+        for (x of tabel[0]){
+            veerud.push([parseFloat(x)]);
+        }
+        for (i=1; i< tabel.length; i++){
+            read.push(tabel[i].map(x => parseFloat(x)));
+        }
+        for (i=0; i<veerud.length; i++){
+            for (j=0; j<read.length; j++){
+                veerud[i].push(read[j][i+1]);
+            }
+        }
+        console.log(calcTabel(read,veerud));
     }
 
     decreaseSize = () => {
