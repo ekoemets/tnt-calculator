@@ -40,7 +40,7 @@ export class TableWrapper extends Component{
         }
         for (let i=1; i< tabel.length; i++){
             read.push(tabel[i].map(x => {
-                if (x.includes("/")){
+                if (x !== null && x.includes("/")){
                    let osad = x.split("/");
                    return parseFloat(osad[0]) / parseFloat(osad[1]);
                 }
@@ -61,16 +61,29 @@ export class TableWrapper extends Component{
 
     decreaseSize = () => {
         if(this.state.size > 2){
-            this.setState({size:this.state.size -1,
-                rows : this.createCells(this.state.size -1)
+            this.state.rows.pop()
+            this.state.rows.map(row => row.pop())
+            this.setState({...this.state,
+                size: this.state.size -1,
+                rows: this.state.rows
              })
         }
     }
 
     increaseSize = () => {
-        this.setState({size:this.state.size +1,
-                       rows : this.createCells(this.state.size +1)
+        this.state.rows.map(row => row.push(null));
+        this.state.rows.push([...Array(this.state.size + 2).keys()].map(i => null))
+        this.setState({...this.state, 
+                       size: this.state.size +1,
+                       rows: this.state.rows
                     })
+    }
+
+    clearValues = () => {
+        this.setState({...this.state, 
+            rows : this.createCells(this.state.size)
+         })
+         console.log(this.state)
     }
 
     render(){
@@ -79,13 +92,14 @@ export class TableWrapper extends Component{
                 <div className="d-flex justify-content-start my-3">
                     <span className="align-self-center"><h4 className="my-0 mr-3">ROW COUNT</h4></span>
                     <ButtonGroup>
-                        <Button variant="secondary align" onClick={this.decreaseSize}>-</Button>
-                        <Button variant="secondary" onClick={this.increaseSize}>+</Button>
+                        <Button variant="secondary border-right" onClick={this.decreaseSize}>-</Button>
+                        <Button variant="secondary border-left" onClick={this.increaseSize}>+</Button>
                     </ButtonGroup>
-                    <Button variant="primary ml-2" onClick={this.onCalculate}>Calculate</Button>
+                    <Button variant="success ml-2" onClick={this.onCalculate}>Calculate</Button>
+                    <Button variant="danger ml-2" onClick={this.clearValues}>Clear</Button>
                 </div>
 
-            <Table bordered style={{width: "auto"}}>
+            <Table style={{width: "auto"}} borderless size="sm">
                 <RowHead key={0} handleChange={this.handleRowChange} row={this.state.rows[0]}></RowHead>
                 {this.state.rows.map((row, index) => {
                     if(index !== 0){
