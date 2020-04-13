@@ -4,6 +4,7 @@ import TRow from './TRow';
 import RowHead from './RowHead';
 import calcTabel from './TNTcalculator'
 import Result from './Result';
+import {evaluate} from 'mathjs';
 
 export class TableWrapper extends Component{
     constructor(){
@@ -36,27 +37,39 @@ export class TableWrapper extends Component{
         var read = [];
         var veerud = [];
         for (let x of tabel[0]){
-            veerud.push([parseFloat(x)]);
+            try{
+                veerud.push([evaluate(x)]);
+            }catch(err){
+                this.setState({...this.state, result: {"Error":`Invalid input "${x}"`}})
+                return null;
+            }
+
         }
+
         for (let i=1; i< tabel.length; i++){
             read.push(tabel[i].map(x => {
-                if (x !== null && x.includes("/")){
-                   let osad = x.split("/");
-                   return parseFloat(osad[0]) / parseFloat(osad[1]);
+                let val = null;
+                if (x !== null){
+                    try{
+                        val =evaluate(x);
+                    }catch(err){
+                        this.setState({...this.state, result: {"Error": `Invalid input "${x}"`}})
+                    }
+                   
                 }
-                else {
-                    return parseFloat(x);
-                }}));
+                return val;
+               }));
         }
+
         for (let i=0; i<veerud.length; i++){
             for (let j=0; j<read.length; j++){
                 veerud[i].push(read[j][i+1]);
             }
         }
+
         let result = calcTabel(read,veerud);
         console.log(result)
         this.setState({...this.state, result: result})
-
     }
 
     decreaseSize = () => {
@@ -98,7 +111,6 @@ export class TableWrapper extends Component{
                     <Button variant="success ml-2" onClick={this.onCalculate}>Calculate</Button>
                     <Button variant="danger ml-2" onClick={this.clearValues}>Clear</Button>
                 </div>
-
             <Table style={{width: "auto"}} borderless size="sm">
                 <RowHead key={0} handleChange={this.handleRowChange} row={this.state.rows[0]}></RowHead>
                 {this.state.rows.map((row, index) => {
@@ -106,6 +118,7 @@ export class TableWrapper extends Component{
                         return(<TRow key={index} handleChange={this.handleRowChange} row={row}>
                             </TRow>)
                     }
+                    return null;
                 })
                 }
             </Table>
