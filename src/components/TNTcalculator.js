@@ -35,8 +35,8 @@ function calcTabel(read, veerud){
     EY += paar[0]*paar[1];
     EY2 += Math.pow(paar[0],2) * paar[1];
   }
-  var DX = Math.round((EX2 - Math.pow(EX,2))*10**6)/10**6;
-  var DY = Math.round((EY2 - Math.pow(EY,2))*10**6)/10**6;
+  var DX = EX2 - Math.pow(EX,2);
+  var DY = EY2 - Math.pow(EY,2);
   var COV = EXY - EX*EY;
   var sigmaX = Math.pow(DX,0.5);
   var sigmaY = Math.pow(DY,0.5);
@@ -55,7 +55,19 @@ function calcTabel(read, veerud){
     }
   }
 
-  return {EX:EX, EX2:EX2, EY:EY, EY2:EY2, DX:DX, DY:DY, EXY:EXY, COV: COV, sigmaX:sigmaX, sigmaY:sigmaY, sõltumatud:soltumatud, korrelatsioonikordaja:COV/(sigmaX*sigmaY)}
+  return {EX:math.format(EX,precision),
+    EX2:math.format(EX2,precision),
+    EY:math.format(EY,precision),
+    EY2:math.format(EY2,precision),
+    DX:math.format(DX,precision),
+    DY:math.format(DY,precision),
+    EXY:math.format(EXY,precision),
+    COV:math.format(COV,precision),
+    sipmaX:math.format(sigmaX,precision),
+    sipmaY:math.format(sigmaY,precision),
+    sbltumatud:soltumatud,
+    korrelatsioonikordaja:math.format(COV/(sigmak*sigmaY),precision)
+  }
 }
 export default calcTabel;
 /*
