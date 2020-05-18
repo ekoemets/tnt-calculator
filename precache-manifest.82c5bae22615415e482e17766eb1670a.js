@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7ffa2debeb231c1cce1f749089320b43",
+    "revision": "a54abda8c4bb2594786c61435e61d96f",
     "url": "/tnt-calculator/index.html"
   },
   {
