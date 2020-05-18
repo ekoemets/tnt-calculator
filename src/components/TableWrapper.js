@@ -11,19 +11,21 @@ export class TableWrapper extends Component{
         super();
         this.state = {
             size : 2,
-            rows : this.createCells(2),
+            height: 2,
+            width: 2,
+            rows : this.createCells(2, 2),
             result: {}
             
         }
     }
 
-    createCells(x){
+    createCells(x, y){
         let rows = [];
         for(let i= 0; i< x + 1; i++){
             rows.push([]);
-            let end = x + 1;
+            let end = y + 1;
             if(i === 0){
-                end = x;
+                end = y;
             }
             for(let j = 0; j < end; j++){
                 rows[i].push(null);
@@ -55,7 +57,6 @@ export class TableWrapper extends Component{
                     }catch(err){
                         this.setState({...this.state, result: {"Error": `Invalid input "${x}"`}})
                     }
-                   
                 }
                 return val;
                }));
@@ -92,9 +93,53 @@ export class TableWrapper extends Component{
                     })
     }
 
-    clearValues = () => {
+    increaseHeight = () => {
+        this.state.rows.push(Array(this.state.width + 1).fill(null))
         this.setState({...this.state, 
-            rows : this.createCells(this.state.size)
+                       height: this.state.height + 1,
+                       rows: this.state.rows
+                    })
+    }
+
+    decreaseHeight = () => {
+        if(this.state.height > 1){
+            this.state.rows.pop();
+            this.setState({...this.state, 
+                           height: this.state.height - 1,
+                           rows: this.state.rows
+                        })
+        }
+
+    }
+
+    increaseWidth = () => {
+        for (let i = 0; i < this.state.rows.length; i++) {
+            const element = this.state.rows[i];
+            element.push(null)
+        }
+        this.setState({...this.state, 
+            width: this.state.width + 1,
+            rows: this.state.rows
+         })
+    }
+
+    decreaseWidth = () => {
+        if(this.state.width > 1){
+            for (let i = 0; i < this.state.rows.length; i++) {
+                const element = this.state.rows[i];
+                element.pop()
+            }
+            this.setState({...this.state, 
+                width: this.state.width - 1,
+                rows: this.state.rows
+             })
+
+        }
+    }
+    clearValues = () => {
+
+        this.setState({...this.state, 
+            rows : this.createCells(this.state.height, this.state.width)
          })
          console.log(this.state)
     }
@@ -103,10 +148,15 @@ export class TableWrapper extends Component{
         return(
             <div>
                 <div className="d-flex justify-content-start my-3">
-                    <span className="align-self-center"><h4 className="my-0 mr-3">ROW COUNT</h4></span>
+                    <span className="align-self-center"><h4 className="my-0 mr-3">ROWS</h4></span>
                     <ButtonGroup>
-                        <Button variant="secondary border-right" onClick={this.decreaseSize}>-</Button>
-                        <Button variant="secondary border-left" onClick={this.increaseSize}>+</Button>
+                        <Button variant="secondary border-right" onClick={this.decreaseHeight}>-</Button>
+                        <Button variant="secondary border-left" onClick={this.increaseHeight}>+</Button>
+                    </ButtonGroup>
+                    <span className="align-self-center"><h4 className="my-0 mx-3">COLS</h4></span>
+                    <ButtonGroup>
+                        <Button variant="secondary border-right" onClick={this.decreaseWidth}>-</Button>
+                        <Button variant="secondary border-left" onClick={this.increaseWidth}>+</Button>
                     </ButtonGroup>
                     <Button variant="success ml-2" onClick={this.onCalculate}>Calculate</Button>
                     <Button variant="danger ml-2" onClick={this.clearValues}>Clear</Button>

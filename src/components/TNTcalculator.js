@@ -1,3 +1,9 @@
+import { create, all } from 'mathjs'
+
+const config = { }
+const math = create(all, config)
+const precision = 6;
+
 function calcTabel(read, veerud){
   var Xtabel = [];
   var Ytabel = [];
@@ -66,7 +72,7 @@ function calcTabel(read, veerud){
     sipmaX:math.format(sigmaX,precision),
     sipmaY:math.format(sigmaY,precision),
     sbltumatud:soltumatud,
-    korrelatsioonikordaja:math.format(COV/(sigmak*sigmaY),precision)
+    korrelatsioonikordaja:math.format(COV/(sigmaX*sigmaY),precision)
   }
 }
 export default calcTabel;
