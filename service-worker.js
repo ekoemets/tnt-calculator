@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tnt-calculator/precache-manifest.c13f5853be706ee87c0fddc523501c66.js"
+  "/tnt-calculator/precache-manifest.2785eb44cb4d4f500145734cccc7ac70.js"
 );
 
 self.addEventListener('message', (event) => {
