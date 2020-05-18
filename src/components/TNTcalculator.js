@@ -69,9 +69,9 @@ function calcTabel(read, veerud){
     DY:math.format(DY,precision),
     EXY:math.format(EXY,precision),
     COV:math.format(COV,precision),
-    sigmaX:math.format(sigmaX,precision),
-    sigmaY:math.format(sigmaY,precision),
-    soltumatud:soltumatud,
+    sigma_X:math.format(sigmaX,precision),
+    sigma_Y:math.format(sigmaY,precision),
+    sõltumatud:soltumatud,
     korrelatsioonikordaja:math.format(COV/(sigmaX*sigmaY),precision)
   }
 }

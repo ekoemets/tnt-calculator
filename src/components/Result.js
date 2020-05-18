@@ -6,7 +6,7 @@ export class Result extends Component{
         return(
             <div className="text-left">
             {Object.keys(this.props.result).map(key => 
-                <p className="my-1">{key}:{this.props.result[key]}</p>)}
+                <p className="my-1">{key.toUpperCase()}  {this.props.result[key]}</p>)}
                 
             </div>
         )
